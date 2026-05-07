@@ -49,6 +49,7 @@ TasksApp
 - AutoMapper
 - FluentValidation
 - Swagger
+- Logger
 
 ## Frontend
 
@@ -57,6 +58,9 @@ TasksApp
 - Reactive Forms
 - TailwindCSS
 - DaisyUI
+- RxJs
+- Observables
+- Pipes
 
 ## Base de datos
 
@@ -98,6 +102,7 @@ También se implementó:
 - Validación centralizada usando FluentValidation
 - AutoMapper para mapeo entre entidades y DTOs
 - Swagger para pruebas y documentación de endpoints
+- Logger para capturar las excepciones de manera global y almacenarlas en archivos planos además de la BD.
 
 ---
 
@@ -137,6 +142,7 @@ También se utilizaron:
 - Uso de AutoMapper para transformación entre modelos.
 - Separación de responsabilidades por capas.
 - Implementación de Repository y UnitOfWork.
+- Inyección de dependecias orquestada por cada capa.
 
 ---
 
