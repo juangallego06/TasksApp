@@ -1,0 +1,21 @@
+<div class="flex flex-wrap gap-4 mb-6">
+  <div class="form-control w-full max-w-xs">
+    <label class="label">
+      <span class="label-text"> Filter by status </span>
+    </label>
+
+    <select
+      class="select select-bordered"
+      [value]="selectedStatus()"
+      (change)="this.newStatus.emit($event)"
+    >
+      <option value="">All</option>
+
+      <option value="0">Pending</option>
+
+      <option value="1">In Progress</option>
+
+      <option value="2">Done</option>
+    </select>
+  </div>
+</div>

@@ -1,0 +1,95 @@
+<div class="card bg-base-100 shadow max-w-2xl">
+  <div class="card-body">
+    <div class="flex items-center justify-between mb-4">
+      <h2 class="card-title">New User</h2>
+    </div>
+
+    @if (apiErrorMessage()) {
+      <app-alert-error [errorMessage]="apiErrorMessage()!"> </app-alert-error>
+    }
+
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="space-y-4">
+      <!-- User Name -->
+      <div>
+        <label class="label">
+          <span class="label-text"> User Name </span>
+        </label>
+
+        <input
+          type="text"
+          formControlName="userName"
+          maxlength="100"
+          placeholder="Enter user name"
+          class="input input-bordered w-full"
+        />
+
+        <div class="flex justify-between mt-1">
+          <p class="text-error text-sm">
+            @if (
+              userForm.controls.userName.touched &&
+              userForm.controls.userName.hasError("required")
+            ) {
+              <span> User name is required. </span>
+            }
+          </p>
+
+          <span class="text-xs text-base-content/60">
+            {{ userForm.controls.userName.value.length }}/100
+          </span>
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div>
+        <label class="label">
+          <span class="label-text"> Email </span>
+        </label>
+
+        <input
+          type="email"
+          formControlName="email"
+          maxlength="150"
+          placeholder="Enter email"
+          class="input input-bordered w-full"
+        />
+
+        <div class="flex justify-between mt-1">
+          <p class="text-error text-sm">
+            @if (
+              userForm.controls.email.touched &&
+              userForm.controls.email.hasError("email")
+            ) {
+              <span> Invalid email format. </span>
+            } @else if (
+              userForm.controls.email.touched &&
+              userForm.controls.email.hasError("required")
+            ) {
+              <span> Email is required. </span>
+            }
+          </p>
+
+          <span class="text-xs text-base-content/60">
+            {{ userForm.controls.email.value.length }}/150
+          </span>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="flex justify-end gap-2 pt-4">
+        <a type="button" class="btn btn-ghost" routerLink="/users"> Cancel </a>
+
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="userForm.invalid || isSubmitting()"
+        >
+          @if (isSubmitting()) {
+            <span class="loading loading-spinner loading-sm"></span>
+          } @else {
+            <span>Create User</span>
+          }
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

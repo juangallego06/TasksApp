@@ -1,0 +1,81 @@
+<div class="overflow-x-auto">
+  <table class="table table-zebra">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>User</th>
+        <th>Status</th>
+        <th>Created At</th>
+        <th>Metadata</th>
+        <th class="text-center">Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @for (task of tasks(); track task.id) {
+        <tr>
+          <!-- Title -->
+          <td>
+            <div class="font-medium">
+              {{ task.title }}
+            </div>
+
+            @if (task.description) {
+              <div class="text-sm text-base-content/60 mt-1">
+                {{ task.description }}
+              </div>
+            }
+          </td>
+
+          <!-- User -->
+          <td>
+            {{ task.userName }}
+          </td>
+
+          <!-- Status -->
+          <td>
+            @switch (task.status) {
+              @case ("Pending") {
+                <div class="badge badge-warning badge-outline">Pending</div>
+              }
+
+              @case ("InProgress") {
+                <div class="badge badge-info badge-outline">In Progress</div>
+              }
+
+              @case ("Done") {
+                <div class="badge badge-success badge-outline">Done</div>
+              }
+            }
+          </td>
+
+          <!-- Created At -->
+          <td>
+            {{ task.createdAt | date: "dd/MM/yyyy HH:mm" }}
+          </td>
+
+          <!-- Metadata -->
+          <td>
+            @if (task.metadataJson) {
+              <div class="tooltip" [attr.data-tip]="task.metadataJson">
+                <button class="btn btn-xs btn-ghost">View JSON</button>
+              </div>
+            } @else {
+              <span class="text-base-content/50"> No metadata </span>
+            }
+          </td>
+
+          <!-- Actions -->
+          <td>
+            <button
+              class="btn btn-sm btn-primary"
+              (click)="this.openModal.emit(task)"
+            >
+              Change Status
+            </button>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

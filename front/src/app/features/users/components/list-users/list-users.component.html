@@ -1,0 +1,21 @@
+<div class="overflow-x-auto">
+  <table class="table table-zebra">
+    <thead>
+      <tr>
+        <th>User Name</th>
+        <th>Email</th>
+        <th>Created At</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @for (user of users(); track user.id) {
+        <tr>
+          <td>{{ user.userName }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.createdAt | date: "dd/MM/yyyy HH:mm" }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

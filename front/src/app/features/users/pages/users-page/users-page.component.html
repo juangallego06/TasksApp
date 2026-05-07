@@ -1,0 +1,17 @@
+<div class="card bg-base-100 shadow">
+  <div class="card-body">
+    <div class="flex items-center justify-between mb-4">
+      <h2 class="card-title">Users</h2>
+
+      <a class="btn btn-primary btn-sm" routerLink="new-user">+ Create User</a>
+    </div>
+
+    @if (isLoading()) {
+      <app-loading-spinner></app-loading-spinner>
+    } @else if (errorMessage()) {
+      <app-alert-error [errorMessage]="errorMessage()!"> </app-alert-error>
+    } @else {
+      <app-list-users [users]="users()"> </app-list-users>
+    }
+  </div>
+</div>

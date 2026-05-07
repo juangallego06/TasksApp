@@ -1,0 +1,104 @@
+<div class="card bg-base-100 shadow">
+  <div class="card-body">
+    <!-- Header -->
+    <div class="flex items-center justify-between mb-6">
+      <div>
+        <h2 class="card-title text-2xl">Tasks</h2>
+
+        <p class="text-sm text-base-content/70 mt-1">
+          Manage and monitor registered tasks.
+        </p>
+      </div>
+
+      <a class="btn btn-primary" routerLink="new-task"> + Create Task </a>
+    </div>
+
+    <!-- Filters -->
+    <app-filters-stacks
+      [selectedStatus]="selectedStatus()!"
+      (newStatus)="onStatusChange($event)"
+    ></app-filters-stacks>
+
+    <!-- Loading -->
+    @if (isLoading()) {
+      <app-loading-spinner></app-loading-spinner>
+    }
+
+    <!-- Error -->
+    @else if (errorMessage()) {
+      <app-alert-error [errorMessage]="errorMessage()!"> </app-alert-error>
+    }
+
+    <!-- Table -->
+    @else {
+      @if (successMessage()) {
+        <div class="mb-4">
+          <div class="alert alert-success">
+            <span>
+              {{ successMessage() }}
+            </span>
+          </div>
+        </div>
+      }
+      <app-list-tasks
+        [tasks]="tasks()!"
+        (openModal)="openStatusModal($event)"
+      ></app-list-tasks>
+    }
+  </div>
+</div>
+
+<dialog id="update_status_modal" class="modal">
+  <div class="modal-box">
+    <h3 class="font-bold text-lg mb-4">Update Task Status</h3>
+
+    @if (selectedTask()) {
+      <div class="mb-4">
+        <p class="font-medium">
+          {{ selectedTask()?.title }}
+        </p>
+      </div>
+    }
+
+    <div class="form-control">
+      <label class="label mr-3">
+        <span class="label-text"> Status </span>
+      </label>
+
+      <select
+        class="select select-bordered"
+        [value]="selectedStatusUpdate()"
+        (change)="selectedStatusUpdate.set($any($event.target).value)"
+      >
+        <option value="Pending">Pending</option>
+
+        <option value="InProgress">In Progress</option>
+
+        <option value="Done">Done</option>
+      </select>
+    </div>
+
+    @if (errorMessageUpdateStatus()) {
+      <div class="m-4">
+        <app-alert-error [errorMessage]="errorMessageUpdateStatus()!">
+        </app-alert-error>
+      </div>
+    }
+
+    <div class="modal-action">
+      <button class="btn btn-ghost" (click)="closeStatusModal()">Cancel</button>
+
+      <button
+        class="btn btn-primary"
+        [disabled]="isUpdatingStatus()"
+        (click)="updateTaskStatus()"
+      >
+        @if (isUpdatingStatus()) {
+          <span class="loading loading-spinner loading-sm"></span>
+        } @else {
+          <span> Update </span>
+        }
+      </button>
+    </div>
+  </div>
+</dialog>
