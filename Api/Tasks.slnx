@@ -1,0 +1,22 @@
+<Solution>
+  <Folder Name="/Application/">
+    <Project Path="Tasks.Application.DTO/Tasks.Application.DTO.csproj" />
+    <Project Path="Tasks.Application.Interfaces/Tasks.Application.Interfaces.csproj" />
+    <Project Path="Tasks.Application.UseCases/Tasks.Application.UseCases.csproj" />
+    <Project Path="Tasks.Application.Validators/Tasks.Application.Validators.csproj" />
+  </Folder>
+  <Folder Name="/Domain/">
+    <Project Path="Tasks.Domain.Entity/Tasks.Domain.Entity.csproj" />
+  </Folder>
+  <Folder Name="/Infrastructure/">
+    <Project Path="Tasks.Infraestructure.Persistence/Tasks.Infrastructure.Persistence.csproj" />
+  </Folder>
+  <Folder Name="/Presentation/">
+    <Project Path="Tasks.Presentation.WebApi/Tasks.Presentation.WebApi.csproj" />
+  </Folder>
+  <Folder Name="/Shared/">
+    <Project Path="Tasks.Shared.Common/Tasks.Shared.Common.csproj" />
+    <Project Path="Tasks.Shared.Logging/Tasks.Shared.Logging.csproj" />
+    <Project Path="Tasks.Shared.Mapper/Tasks.Shared.Mapper.csproj" />
+  </Folder>
+</Solution>

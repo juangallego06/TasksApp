@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="16.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.14" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="9.0.6" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="9.0.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Tasks.Application.Interfaces\Tasks.Application.Interfaces.csproj" />
+    <ProjectReference Include="..\Tasks.Application.UseCases\Tasks.Application.UseCases.csproj" />
+    <ProjectReference Include="..\Tasks.Infraestructure.Persistence\Tasks.Infrastructure.Persistence.csproj" />
+    <ProjectReference Include="..\Tasks.Shared.Logging\Tasks.Shared.Logging.csproj" />
+    <ProjectReference Include="..\Tasks.Shared.Mapper\Tasks.Shared.Mapper.csproj" />
+  </ItemGroup>
+
+</Project>
